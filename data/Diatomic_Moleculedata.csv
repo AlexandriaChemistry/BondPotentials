@@ -209,7 +209,7 @@ BO,"X $^2\Sigma^+$",6.52094009,0,1885.69,11.81,1.782,0.0166,63.2,1.2045,8.28,,"K
 BO,"A $^2\Pi$",6.52094009,23833.7,,,1.4018,,76.3,1.3533,,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JUN 1976"
 BO,"A $^2\Pi$",6.52094009,23958.76,1260.7,11.157,1.4018,0.0196,76.3,1.3533,,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JUN 1976"
 BO,"B $^2\Sigma^+$",6.52094009,43174.05,1281.69,10.66,1.5171,0.021,85,1.3054,,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JUN 1976"
-Br2,"X ${}^1\Sigma_{g}^{+}$",39.459166,0,325.321,0.0774,0.082107,0.0003187,0.2092,2,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
+#Br2,"X ${}^1\Sigma_{g}^{+}$",39.459166,0,325.321,0.0774,0.082107,0.0003187,0.2092,2,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
 Br2,"A ${}^3\Pi_{u} \ l_{u}$",39.459166,13905,153,2.7,,0.0008,,2.695,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
 Br2,"B ${}^3\Pi_{u} \ O_{u}^{+}$",3.9459166,15902.47,167.607,1.6361,0.059589,0.0004891,0.3013,2.67757,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
 Br2,D,39.459166,48499,162,0.29,,,,,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
