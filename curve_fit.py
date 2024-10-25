@@ -7,7 +7,6 @@ from scipy.optimize import minimize, curve_fit, fmin, root
 from diatomics import get_diatomics
 
 from potentials import Kratzer,Harmonic,Lippincott,Deng_Fan,Pseudo_Gaussian,Rydberg,Varshni,Morse,Valence_State,Rosen_Morse,Rosen_Morse_try,Linnett,Poschl_Teller,Frost_Musulin,Levine,Wei_Hua,Tietz_I,Rafi,Noorizadeh,Tietz_II,Hulburt_Hirschfelder,Murrell_Sorbie,Sun,Lennard_Jones,Buckingham,Wang_Buckingham,Cahill,Xie2005a,Tang2003a
-#,J1,K1,S0,f_2n
 
 WaveNumber2kJ = 0.0119627
 
@@ -282,7 +281,7 @@ def main():
                 parms[ddfile]['filename'] = dfile
                 sys.stderr.write("Copying %s parameters to %s\n" % ( cmono, ddfile ))
     elif args.method == "exp":
-        parms = read_potential_parms("json/Royappa2006a-JMS_787_209.json")
+        parms = read_potential_parms("json/exp.json")
     else:
         sys.exit("Unsupported method '%s'" % args.method)
     if args.m:
