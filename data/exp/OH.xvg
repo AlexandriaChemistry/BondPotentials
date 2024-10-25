@@ -1,0 +1,39 @@
+#
+#Date: Fri, 12 Oct 2018 12:08:41 -0500
+#From: Tim Royappa <royappa@uwf.edu>
+#To: paul@vanmaaren.org
+#Subject: Re: JMS 787, (2006), 209-215
+#
+#The RKR data for CO, H2, HF, Li2, LiH, N2, and O2 can be found in the
+#literature, as mentioned on p. 210 of the paper. Data for C2, CF, CH, CN, N2+,
+#NO and OH were provided to me by Dr. Jorge Luque at SRI International, and I
+#have attached them. I would request that you please provide attribution to him
+#if you use them in a publication.
+#
+#R[A]         E[invcm]
+0.681445E+00  +3.356997E+04
+0.687975E+00  +3.194347E+04
+0.694831E+00  +3.009606E+04
+0.702320E+00  +2.804681E+04
+0.710664E+00  +2.580977E+04
+0.720087E+00  +2.339503E+04
+0.730866E+00  +2.080955E+04
+0.743381E+00  +1.805786E+04
+0.758195E+00  +1.514257E+04
+0.776216E+00  +1.206479E+04
+0.799080E+00  +8.824424E+03
+0.830409E+00  +5.420388E+03
+0.882851E+00  +1.850742E+03
+1.079667E+00  +1.850742E+03
+1.178058E+00  +5.420388E+03
+1.256947E+00  +8.824424E+03
+1.329276E+00  +1.206479E+04
+1.398959E+00  +1.514257E+04
+1.468008E+00  +1.805786E+04
+1.537833E+00  +2.080955E+04
+1.609705E+00  +2.339503E+04
+1.685033E+00  +2.580977E+04
+1.765621E+00  +2.804681E+04
+1.854032E+00  +3.009606E+04
+1.954230E+00  +3.194347E+04
+2.072886E+00  +3.356997E+04
