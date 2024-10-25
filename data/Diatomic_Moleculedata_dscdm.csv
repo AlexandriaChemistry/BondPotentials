@@ -1,0 +1,8 @@
+"Molecule name","Electronic state","Reduced mass","Te cm^{-1}","omega_e cm^{-1}","omega_ex_e cm^{-1}","Be cm^{-1}","alpha_e cm^{-1}","De 10^{-7}cm^{-1}","Re \AA","D0 eV","IP eV",Reference,"Date of reference"
+HCl,"X $^1\Sigma^+$",0.97959272,0,2990.9463,52.8186,10.593416,0.307181,5.3194,1.274552,4.4336,12.758,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+HBr,"X $^1\Sigma^+$",0.99542702,0,2648.975,45.2175,8.464884,0.23328,3.4575,1.414435,3.758,11.67,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+HI,"X $^1\Sigma^+$",0.99988453,0,2309.014,39.6435,6.4263650,0.16886,2.069,1.60916,3.0541,10.38,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+N2+,"X $^2\Sigma^+$",7.00140006,0,2207.00,16.10,1.93176,0.01881,6.10,1.11642,8.7128,27.1,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+OH-,"X $^1\Sigma^+$",7.00140006,0,3700,,,,,0.970,4.755,1.8254,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+NO+,"X $^1\Sigma^+$",7.46643323,0,2376.42,16.262,1.99727,0.01889,5.64,1.06322,10.8506,30.3,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
+SF,"X $^2\Pi_{3/2}$",11.92156863,0,837.6418,4.46953,0.555173,0.00459,0.97534,1.596244,,,"Endo et. al., J Mol. Spec., 97, 213, (1983)","1983"
