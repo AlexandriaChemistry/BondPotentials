@@ -393,7 +393,7 @@ if __name__ == "__main__":
                                     explog.write("Experiment: %s %s = %g\n" % ( diat, mdwe, md[m][mdwe] )) 
                                     explog.write("Experiment: %s %s = %g\n" % ( diat, mdwexe, md[m][mdwexe] )) 
                                     exptab.write("%s & %.1f & %.1f & %.1f & %.1f\\\\\n" % 
-                                                 ( diat, md[m][mdwe], mydict[method][diat]["we"],
+                                                 ( ddd[diat]["formula"], md[m][mdwe], mydict[method][diat]["we"],
                                                    md[m][mdwexe], mydict[method][diat]["wexe"] ))
                                     diff = ( mydict[method][diat]["we"] - md[m][mdwe])
                                     expsum["we"]  += diff
