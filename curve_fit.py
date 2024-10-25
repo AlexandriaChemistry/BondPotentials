@@ -11,12 +11,11 @@ from potentials import Kratzer,Harmonic,Lippincott,Deng_Fan,Pseudo_Gaussian,Rydb
 
 WaveNumber2kJ = 0.0119627
 
-def gen_bounds(pson:dict, diatable:dict, compound:str, func, quiet:bool):
+def gen_bounds(pson:dict, diatable:dict, cmpd:str, func, quiet:bool):
     if not func in pson:
         return None
     mybounds = copy.deepcopy((pson[func]["min"],pson[func]["max"]))
     re   = "re"
-    cmpd = compound[:].replace("_", "-")
     if cmpd in diatable and re in pson[func]:
         reval = copy.deepcopy(diatable[cmpd]["distance"])
         reind = copy.deepcopy(int(pson[func][re]))
@@ -276,11 +275,9 @@ def main():
         parms = read_potential_parms(jsfile)
         diatomics = list(parms.keys())
         for dfile in dfiles:
-            ddfile = dfile[:]
-            # Replace dash and remove extension
-            ddfile = ddfile.replace('-', '_')[:-4]
+            ddfile = dfile[:-4]
             if not ddfile in parms.keys():
-                cmono = "carbon_monoxide"
+                cmono = "CO"
                 parms[ddfile] = copy.deepcopy(parms[cmono])
                 parms[ddfile]['filename'] = dfile
                 sys.stderr.write("Copying %s parameters to %s\n" % ( cmono, ddfile ))

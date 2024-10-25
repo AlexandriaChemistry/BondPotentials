@@ -6,9 +6,8 @@ import importlib
 foobar = importlib.import_module("curve_fit")
 from diatomics import get_diatomics
 
-Roy = "Royappa2006a-JMS_787_209"
-
-debug = False
+debug   = False
+verbose = False
 
 covs = [ "Non-covalent", "Covalent" ]
 
@@ -78,6 +77,7 @@ def print_exper_table(filenm:str, mysum:dict, df, functions:dict):
 
         # Number of covalency columns
         ncov = 1
+        cov = covs[1]
         outf.write("\\begin{tabular}{lccccc}\n")
         outf.write("\\hline\n")
         ncol = 2
@@ -87,9 +87,9 @@ def print_exper_table(filenm:str, mysum:dict, df, functions:dict):
         fkeys = {}
         for func in functions:
             fkeys[func] = 0
-            for z in mysum[func]["Non-covalent"]["Z"]:
+            for z in mysum[func][cov]["Z"]:
                 fkeys[func] += z
-            fkeys[func] /= len(mysum[func]["Non-covalent"]["Z"])
+            fkeys[func] /= len(mysum[func][cov]["Z"])
         fkeys = list(sorted(fkeys.items(), key=lambda kv:kv[1]))
         if debug:
             print(fkeys)
@@ -110,13 +110,11 @@ def print_exper_table(filenm:str, mysum:dict, df, functions:dict):
             outf.write("%s " % myfuncname)
             factor = 1
             if func in mysum:
-                for cov in covs:
-                    av = calc_aver(mysum[func][cov])
-                    if covs[0] == cov:
-                        if func in df.loc['Avg.'].index:
-                            dz = ("%.0f" % ( av["Z"] - df.loc['Avg.'][func] ))
-                            outf.write("& %.0f & %s & %.0f" %
-                                       ( av["Z"], dz, av["RMSD"] ))
+                av = calc_aver(mysum[func][cov])
+                if func in df.loc['Avg.'].index:
+                    dz = ("%.0f" % ( av["Z"] - df.loc['Avg.'][func] ))
+                    outf.write("& %.0f & %s & %.0f" %
+                               ( av["Z"], dz, av["RMSD"] ))
             outf.write("\\\\\n")
         write_footer(outf, "table")
 
@@ -153,8 +151,8 @@ def print_theory_table(filenm:str, jsons:list, mysum:dict, df, numax:int, functi
                 outf.write(" & & ")
             jjjs = js.split("-")[0].upper()
             outf.write("& \\multicolumn{%d}{c}{%s}" % ( ncol, jjjs ))
-            #js.replace("_","-")[:-5].upper()))
             printHeader = True
+
         if printHeader:
             outf.write("\\\\\n")
         myfunc = list(functions.keys())[0]
@@ -176,11 +174,20 @@ def print_theory_table(filenm:str, jsons:list, mysum:dict, df, numax:int, functi
         outf.write("\\hline\n")
         fkeys = {}
         jsccsd = jsons[0]
+        if verbose:
+            print("jsccsd has %d keys" % ( len(mysum[jsccsd].keys())))
+            if debug:
+                for k in mysum[jsccsd].keys():
+                    print(k)
         for func in functions:
             fkeys[func] = 0
             for z in mysum[jsccsd][func]["Covalent"]["Z"]:
                 fkeys[func] += z
-            fkeys[func] /= len(mysum[jsccsd][func]["Covalent"]["Z"])
+            N = len(mysum[jsccsd][func]["Covalent"]["Z"])
+            if N == 0:
+                print("No data for %s %s" % ( jsccsd, func ))
+            else:
+                fkeys[func] /= N
         fkeys = list(sorted(fkeys.items(), key=lambda kv:kv[1]))
         if debug:
             print(fkeys)
@@ -202,7 +209,7 @@ def print_theory_table(filenm:str, jsons:list, mysum:dict, df, numax:int, functi
                 if func in mysum[js]:
                     for cov in covs:
                         av = calc_aver(mysum[js][func][cov])
-                        if js.find(Roy) >= 0:
+                        if js.find("exp") >= 0:
                             if covs[0] == cov:
                                 if func in df.loc['Avg.'].index:
                                     dz = ("%.0f" % ( av["Z"] - df.loc['Avg.'][func] ))
@@ -220,22 +227,22 @@ def print_theory_table(filenm:str, jsons:list, mysum:dict, df, numax:int, functi
         outf.write("\\end{tabular}\n")
         outf.write("\\end{%s}\n" % table)
 
-def calc_mysum(jsonfile:str, diatomics:dict, useFormula:bool)->dict:
+def calc_mysum(jsonfile:str, diatomics:dict, covalent, useFormula:bool)->dict:
     mysum     = {}
     functions = {}
     results = foobar.read_potential_parms("json/"+jsonfile)
     for kk in results.keys():
-        kk2   = kk[:].replace("_", "-")
         found = False
-        if useFormula:
-            for d in diatomics:
-                if diatomics[d]["formula"] == kk:
-                    found = True
-        else:
-            found = kk2 in diatomics
+        for d in diatomics:
+            if diatomics[d]["formula"] == kk:
+                found = True
         if not found:
+            if verbose:
+                print("Did not find %s in diatomics database" % ( kk ) )
             continue
-        if kk2 in covalent:
+        elif debug:
+            print("Found %s with %d keys" % ( kk, len(results[kk].keys()) ))
+        if kk in covalent:
             cc = covs[1] 
         else:
             cc = covs[0]
@@ -252,22 +259,22 @@ def calc_mysum(jsonfile:str, diatomics:dict, useFormula:bool)->dict:
                         if not res in mysum[func][c]:
                             mysum[func][c][res] = []
                     mysum[func][cc][res].append(xx)
+        
     return results, mysum, functions
 
-verbose = False
 if __name__ == "__main__":
     print("Will analyse json file produced by the curve_fit.py script.")
     csv_file = 'data/exp/Royappa2006a-JMS_787_209-table-I.csv'
     df = pd.read_csv(csv_file)
     df.set_index('Species', inplace=True)
-    #, "bromine-monoxide", "chlorine-monoxide", "iodine-monoxide", "lithium-monoxide", "nitric-oxide", "nitric-sulfide", "phosphorus-monoxide", ]
+
     covalent = []
     diatomics = get_diatomics()
     for d in diatomics:
         if diatomics[d]["covalent"]:
-            covalent.append(d)
+            covalent.append(diatomics[d]["formula"])
     print("There are %d covalent compounds out of %d" % ( len(covalent), len(diatomics)))
-    jsroy, msroy, functions = calc_mysum("Royappa2006a-JMS_787_209.json", diatomics, True)
+    jsroy, msroy, functions = calc_mysum("exp.json", diatomics, covalent, True)
     tables = "experiment.tex"
     print_exper_table(tables, msroy, df, functions)
 
@@ -280,8 +287,9 @@ if __name__ == "__main__":
         os.chdir("..")
         for jjs in range(len(jsfiles)):
             js = jsfiles[jjs]
-            rrr, mysum[js], ff = calc_mysum(js, diatomics, False)
-            print("Read %s" % js)
+            rrr, mysum[js], ff = calc_mysum(js, diatomics, covalent, True)
+            if verbose:
+                print("Read %s with %d functions" % (js, len(mysum[js].keys())))
             results.append(js[:])
             functions = functions | ff
 
