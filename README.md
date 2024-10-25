@@ -20,4 +20,4 @@ Output is produced in a csv file, a pdf with plots of the fits (if requested) et
 
 Data for diatomic molecules were taken from [The Diatomic Molecular Spectroscopy Database](https://rios.mp.fhi.mpg.de).
 
-A manuscript about this the code and results from this repository, entitle *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
+A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
