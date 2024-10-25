@@ -20,7 +20,7 @@ def get_refs(filenm:str)->dict:
 
 if __name__ == "__main__":
     diatomics = get_diatomics()
-    methods = { "exp": { "fn": "Royappa2006a-JMS_787_209" },
+    methods = { "exp": { "fn": "exp" },
                 "MP2": { "fn": "MP2-numax=1000" },
                 "CCSD(T)": { "fn": "CCSD(T)-numax=1000" }
                }
@@ -37,16 +37,17 @@ if __name__ == "__main__":
     data = "../../data/"
     ncomp = 1
     for comp in methods["MP2"]["parms"]:
-        comp2  = comp[:].replace("_", "-")
-        if not comp2 in diatomics:
+        found  = False
+        for d in diatomics:
+            if comp == diatomics[d]["formula"]:
+                found = True
+        if not found:
             continue
         fns   = ""
         label = ""
         nmeth = 0
         for m in methods:
             mycomp = comp
-            if "exp" == m:
-                mycomp = diatomics[comp2]["formula"]
             if mycomp in methods[m]["parms"]:
                 filenm = data + m + "/" + methods[m]["parms"][mycomp]["filename"]
                 if os.path.exists(filenm):
@@ -63,12 +64,10 @@ if __name__ == "__main__":
         tex.write("\\begin{figure*}[ht]\n")
         tex.write("\\centering\n")
         tex.write("\\includegraphics[width=12cm]{graphs/%s}\n" % pdf)
-        comp2  = comp[:].replace("_", "-")
-        myform = diatomics[comp2]["formula"]
         extra  = ""
-        if myform in refs:
-            extra = (" Experimental data from ref.\\citenum{%s}." % ( refs[myform]))
-        tex.write("\\caption{%s.%s}\n" % ( comp2, extra ))
+        if comp in refs:
+            extra = (" Experimental data from ref.\\citenum{%s}." % ( refs[comp]))
+        tex.write("\\caption{%s.%s}\n" % ( comp, extra ))
         tex.write("\\end{figure*}\n")
         if ncomp % 15 == 0:
             tex.write("\\cleardoublepage\n")
