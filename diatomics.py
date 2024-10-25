@@ -4,7 +4,7 @@ import copy, pandas, sys
 
 def get_diatomics(ddfile:str = "data/diatomics.csv", exclude:list=["boron-nitride"]) -> dict:
     diatomics = {}
-    df = pandas.read_csv(ddfile, comment='#', sep="|")
+    df = pandas.read_csv(ddfile, comment='#', sep=",")
     cpd = "Compound"
     nrows = len(df[cpd])
     for row in range(nrows):
