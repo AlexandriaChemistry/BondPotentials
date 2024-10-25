@@ -312,7 +312,7 @@ if __name__ == "__main__":
     pots    = []
     for p in [ Kratzer,Harmonic,Lippincott,Deng_Fan,Pseudo_Gaussian,Rydberg,Varshni,Morse,Valence_State,Rosen_Morse,Linnett,Poschl_Teller,Frost_Musulin,Levine,Wei_Hua,Tietz_I,Rafi,Noorizadeh,Tietz_II,Hulburt_Hirschfelder,Murrell_Sorbie,Sun,Lennard_Jones,Buckingham,Wang_Buckingham,Cahill,Xie2005a,Tang2003a ]:
         pots.append(str(p.__name__))
-#    pots    = [ "Hulburt_Hirschfelder", "Sun", "Wei_Hua", "Tietz_II", "Cahill", "Murrell_Sorbie",  "Morse", "Rosen_Morse", "Linnett", "Harmonic" ]
+
     xvg_we   = {}
     xvg_wexe = {}
     for m in methods+pots:
@@ -328,8 +328,7 @@ if __name__ == "__main__":
         chi2[m] = {}
         for ww in [ "we", "wexe" ]:
             chi2[m][ww] = []
-            
-            
+
     mdwe   = "omega_e cm^{-1}"
     mdwexe = "omega_ex_e cm^{-1}"
     freqcsv  = "frequencies.csv"
