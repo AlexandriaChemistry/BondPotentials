@@ -9,7 +9,7 @@ from curve_fit import read_potential_parms
 
 def get_refs(filenm:str)->dict:
     refs = {}
-    df = pandas.read_csv(filenm, comment='#', sep="|")
+    df = pandas.read_csv(filenm, comment='#', sep=",")
     cpd = "Formula"
     rrr = "Reference"
     nrows = len(df[cpd])
