@@ -18,6 +18,6 @@ Output is produced in a csv file, a pdf with plots of the fits (if requested) et
 
 + potentials.py is the code to compute potentials.
 
-Data for diatomic molecules were taken from [The Diatomic Molecular Spectroscopy Database](https://rios.mp.fhi.mpg.de).
+Data for diatomic molecules were taken from [The Diatomic Molecular Spectroscopy Database](https://rios.mp.fhi.mpg.de). Please note though, that some errors were detected and some omissions were found that we have addressed in an additional file in the data directory.
 
 A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
