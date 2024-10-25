@@ -281,7 +281,7 @@
         1.7129494075678926
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-C2.xvg"
+    "filename": "C2.xvg"
   },
   "CF": {
     "Buckingham": {
@@ -565,7 +565,7 @@
         0.907211575698643
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-CF.xvg"
+    "filename": "CF.xvg"
   },
   "CH": {
     "Buckingham": {
@@ -849,7 +849,7 @@
         0.08894850845735101
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-CH.xvg"
+    "filename": "CH.xvg"
   },
   "CN": {
     "Buckingham": {
@@ -1133,7 +1133,7 @@
         2.408887090983315
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-CN.xvg"
+    "filename": "CN.xvg"
   },
   "CO": {
     "Buckingham": {
@@ -1417,7 +1417,7 @@
         2.2559266692467816
       ]
     },
-    "filename": "Mantz1971a-JMS_39_180-table-I-CO.xvg"
+    "filename": "CO.xvg"
   },
   "H2": {
     "Buckingham": {
@@ -1700,7 +1700,7 @@
         0.1796102588684906
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-H2.xvg"
+    "filename": "H2.xvg"
   },
   "HF": {
     "Buckingham": {
@@ -1984,7 +1984,7 @@
         0.05467340287207786
       ]
     },
-    "filename": "Coxon1990a-JMS_142_254-table-VI-HF.xvg"
+    "filename": "HF.xvg"
   },
   "Li2": {
     "Buckingham": {
@@ -2267,7 +2267,7 @@
         0.04821256250642944
       ]
     },
-    "filename": "Krupenie1963a-JCP_39_2399-table-I-Li2.xvg"
+    "filename": "Li2.xvg"
   },
   "LiH": {
     "Buckingham": {
@@ -2551,7 +2551,7 @@
         0.09076948303510869
       ]
     },
-    "filename": "Stwalley1993a-JPCRD_22_87-table-8-LiH.xvg"
+    "filename": "LiH.xvg"
   },
   "N2": {
     "Buckingham": {
@@ -2835,7 +2835,7 @@
         2.839399874867595
       ]
     },
-    "filename": "Edwards1993a-JMS_162_257-table-VII-N2.xvg"
+    "filename": "N2.xvg"
   },
   "N2+": {
     "Buckingham": {
@@ -3119,7 +3119,7 @@
         2.3430036769389555
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-N2+.xvg"
+    "filename": "N2+.xvg"
   },
   "NO": {
     "Buckingham": {
@@ -3403,7 +3403,7 @@
         1.2322509662647925
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-NO.xvg"
+    "filename": "NO.xvg"
   },
   "O2": {
     "Buckingham": {
@@ -3687,7 +3687,7 @@
         1.3263485004652844
       ]
     },
-    "filename": "Krupenie1972a-JPCRD_1_423-table-53-O2.xvg"
+    "filename": "O2.xvg"
   },
   "OH": {
     "Buckingham": {
@@ -3971,6 +3971,6 @@
         0.06978421643392715
       ]
     },
-    "filename": "Royappa2006a-JMS_787_209-pers_comm-OH.xvg"
+    "filename": "OH.xvg"
   }
 }

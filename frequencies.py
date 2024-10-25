@@ -160,7 +160,7 @@ def calc_stats(ref:dict, calc:dict):
 
 def write_qm_freqs(filenm:str, mydict:dict, diat:dict):
     with open(filenm, "w") as outf:
-        outf.write("\\begin{longtable}{p{40mm}cccccc}\n")
+        outf.write("\\begin{longtable}{p{20mm}cccccc}\n")
         outf.write("\\caption{First (%s) and second (%s) vibrational frequencies (cm$^{-1}$) from experiment~\\cite{Huber1979a} and quantum chemistry.}\\\\\n" % ( wetex, wexetex ))
         outf.write("\\hline\n")
         head = ("Compound & %s & %s & %s & %s & %s & %s \\\\\n" % ( wetex, wexetex, wetex, wexetex,wetex, wexetex ))
@@ -190,7 +190,7 @@ def write_qm_freqs(filenm:str, mydict:dict, diat:dict):
                         results.append(format % mydict[m][d][w])
                     else:
                         results.append("")
-            outf.write("%s" % d)
+            outf.write("%s" % to_latex(diat[d]["formula"], diat[d]["mult"] > 1))
             for r in range(len(results)):
                 outf.write("& %s" % results[r])
             outf.write("\\\\\n")
@@ -281,6 +281,17 @@ def parse_args():
 
     return parser.parse_args()
 
+def exptab_header(outf):
+    outf.write("\\begin{table}[ht]\n")
+    outf.write("\\centering\n")
+    outf.write("\\caption{First and second vibrational frequencies  either from experiment~\cite{Huber1979a} or computed using Psi4~\cite{psi4} based on experimental data.}\n")
+    outf.write("\\label{expfreqs}\n")
+    outf.write("\\begin{tabular}{lcccc}\n")
+    outf.write("\\hline\n")
+    outf.write("Molecule & \multicolumn{2}{c}{$\omega_e$} & \multicolumn{2}{c}{$\omega_w$x$_e$} \\\\\n")
+    outf.write("& Exper & Psi4 & Exper & Psi4 \\\\\n")
+    outf.write("\\hline\n")
+    
 if __name__ == "__main__":
     args = parse_args()
 
@@ -325,6 +336,7 @@ if __name__ == "__main__":
     if args.numax == -1:
         explog  = open("exper_freq.log", "w")
         exptab  = open("exper_freq.tex", "w")
+        exptab_header(exptab)
         expsum  = { "we": 0, "wexe": 0 }
         exp2sum = { "we": 0, "wexe": 0 }
         nexpsum = 0
@@ -347,7 +359,7 @@ if __name__ == "__main__":
         for method in methods:
             # Read parameters for this method
             if args.numax == -1:
-                filename = "json/Royappa2006a-JMS_787_209.json"
+                filename = "json/exp.json"
             else:
                 filename = ("json/%s-numax=%d.json" % ( method, args.numax ))
             mydict[method] = {}
@@ -359,14 +371,10 @@ if __name__ == "__main__":
                 rvals    = None
                 energies = None
                 # Read existing file
-                compound = diat[:].replace("-", "_")
-                if args.numax == -1:
-                    compound = ddd[diat]['formula']
-                    if not compound in jparms[method]:
-                        continue
-                    filenm = ("data/exp/%s" % jparms[method][compound]['filename'])
-                else:
-                    filenm = ("data/%s/%s" % ( method, jparms[method][compound]['filename']))
+                compound = ddd[diat]['formula']
+                if not compound in jparms[method]:
+                    continue
+                filenm = ("data/%s/%s" % ( method, jparms[method][compound]['filename']))
 
                 if not os.path.exists(filenm):
                     print("Cannot find %s" % filenm)
@@ -476,6 +484,8 @@ if __name__ == "__main__":
                          ( rmsd["we"], rmsd["wexe"] ))
             exptab.write("MSE &  & %.1f &  & %.1f\\\\\n" % 
                          ( expsum["we"]/nexpsum, expsum["wexe"]/nexpsum ))
+            exptab.write("\\hline\n")
+            exptab.write("\\end{tabular}\n\\end{table}\n")
         exptab.close()
     for m in methods+pots:
         xvg_we[m].close()
