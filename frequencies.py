@@ -30,10 +30,11 @@ def dtable(diat:dict, md:dict, filenm:str):
     ccc = { False: "non-covalent", True: "covalent" }
     zpemax = 0
     with open(filenm, "w") as outf:
-        outf.write("\\begin{longtable}{p{40mm}ccccccc}\n")
-        outf.write("\\caption{Name and properties (charge q, multiplicity m) of the  diatomics studied. Covalency is indicated by cov. Experimental dissociation energy $D_0$ (cm$^{-1}$) and zero point energy ZPE (cm$^{-1}$) and bond distance r$_e$ (\AA)~\\cite{Huber1979a}.}\\\\\n")
+        outf.write("\\begin{longtable}{p{40mm}cccc}\n")
+        outf.write("\\caption{Name and properties (charge q, multiplicity m) of the  diatomics studied. Covalency is indicated by cov.}\\\\\n")# Experimental dissociation energy $D_0$ (cm$^{-1}$) and zero point energy ZPE (cm$^{-1}$) and bond distance r$_e$ (\AA)~\\cite{Huber1979a}.}\\\\\n")
         outf.write("\\hline\n")
-        head = ("Compound & Formula & q & m & cov & D$_0$ & ZPE & r$_e$\\\\")
+        #& D$_0$ & ZPE & r$_e$
+        head = ("Compound & Formula & q & m & cov \\\\")
         outf.write("%s\n" % head)
         outf.write("\\hline\n")
         outf.write("\\endfirsthead\n")
@@ -50,31 +51,6 @@ def dtable(diat:dict, md:dict, filenm:str):
             D0 = None
             we = None
             re = None
-            for m in md.keys():
-                if (diat[d]["formula"] == m[0] and
-                    md[m]["Te cm^{-1}"] == 0.0):
-                    try:
-                        D0 = float(md[m]["D0 eV"])*ev2kJ/cm2kJ
-                        if not math.isfinite(D0):
-                            D0 = None
-                    except ValueError:
-                        D0 = None
-                    try:
-                        we = 0.5*float(md[m]["omega_e cm^{-1}"])
-                        zpemax = max(zpemax, we)
-                    except ValueError:
-                        we = None
-                    re = md[m]["Re \AA"]
-            if D0:
-                outf.write("& %.1f" % D0)
-            else:
-                outf.write("& ")
-            if we:
-                outf.write("& %.1f" % we)
-            else:
-                outf.write("& ")
-            if re:
-                outf.write("& %s" % re)
             outf.write("\\\\\n")
         outf.write("\\end{longtable}\n")
         outf.write("\n")
