@@ -56,7 +56,7 @@ if __name__ == "__main__":
         for d in md:
             print(d,md[d])
             
-    mdfile = "data/Diatomic_Moleculedata_dscdm.csv"
+    mdfile = "data/Diatomic_Moleculedata_updates.csv"
     dscdm = get_moldata(mdfile)
     print("There are %d entries in %s" % ( len(dscdm), mdfile ))
     md.update(dscdm)

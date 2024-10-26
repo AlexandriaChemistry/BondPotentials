@@ -276,7 +276,7 @@ if __name__ == "__main__":
 
     mdfile = "data/Diatomic_Moleculedata.csv"
     md = get_moldata(mdfile)
-    mdfile2 = "data/Diatomic_Moleculedata_dscdm.csv"
+    mdfile2 = "data/Diatomic_Moleculedata_updates.csv"
     dscdm = get_moldata(mdfile2)
     md.update(dscdm)
     print("There are %d entries in %s and %s" % ( len(md), mdfile, mdfile2 ))
