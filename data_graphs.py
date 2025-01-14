@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from diatomics import get_diatomics
 from curve_fit import read_potential_parms
+from frequencies import to_latex
 
 def get_refs(filenm:str)->dict:
     refs = {}
@@ -38,8 +39,10 @@ if __name__ == "__main__":
     ncomp = 1
     for comp in methods["MP2"]["parms"]:
         found  = False
+        ddd    = None
         for d in diatomics:
             if comp == diatomics[d]["formula"]:
+                ddd   = d
                 found = True
         if not found:
             continue
@@ -58,7 +61,9 @@ if __name__ == "__main__":
                     print("No such file %s" % filenm)
         addflag = ""
         if nmeth == 3:
-            addflag = " -mk1st " 
+            addflag = " -colors black red blue -ls None solid dashed -mk o None None "
+        else:
+            addflag = " -colors red blue -ls solid dashed "
         pdf = ("%s.pdf" % comp)
         os.system("viewxvg -f %s -label %s -pdf %s -noshow -legend_x 0.3 %s" % ( fns, label, pdf, addflag ))
         tex.write("\\begin{figure*}[ht]\n")
@@ -67,7 +72,9 @@ if __name__ == "__main__":
         extra  = ""
         if comp in refs:
             extra = (" Experimental data from ref.\\citenum{%s}." % ( refs[comp]))
-        tex.write("\\caption{%s.%s}\n" % ( comp, extra ))
+        radical = diatomics[ddd]["mult"] > 1
+        ccc     = ddd.replace("-", " ")
+        tex.write("\\caption{Compound %s (%s). %s}\n" % ( ccc, to_latex(comp, radical), extra ))
         tex.write("\\end{figure*}\n")
         if ncomp % 15 == 0:
             tex.write("\\cleardoublepage\n")

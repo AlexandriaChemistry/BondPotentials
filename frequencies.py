@@ -20,21 +20,52 @@ def to_latex(dd:str, radical:bool)->str:
     for k in dd:
         if k in '0123456789':
             ndd += "$_" +k + "$"
+        elif k in '+-':
+            ndd += "$^" +k + "$"
         else:
             ndd += k
     if radical:
-        ndd += "{$\\cdot$}"
+        ndd += "{\\textbullet}"
     return ndd
 
+def get_range(form:str):
+    cfn = ( "data/CCSD(T)/%s.xvg" % form )
+    r0  = None
+    r1  = None
+    n   = 0
+    if os.path.exists(cfn):
+        with open(cfn, "r") as inf:
+            for line in inf:
+                if line.startswith("@"):
+                    continue
+                words = line.split()
+                if len(words) == 2:
+                    try:
+                        x = float(words[0])
+                        y = float(words[1])
+                        if not r0:
+                            r0 = x
+                        if not r1:
+                            r1 = x
+                        r0 = min(x, r0)
+                        r1 = max(x, r0)
+                        n += 1
+                    except ValueError:
+                        print("Cannot read line '%s'" % line.strip())
+                        continue
+    else:
+        sys.exit("No such file %s" % cfn)
+    return r0, r1, n
+                            
 def dtable(diat:dict, md:dict, filenm:str):
     ccc = { False: "non-covalent", True: "covalent" }
     zpemax = 0
     with open(filenm, "w") as outf:
-        outf.write("\\begin{longtable}{p{40mm}cccc}\n")
-        outf.write("\\caption{Name and properties (charge q, multiplicity m) of the  diatomics studied. Covalency is indicated by cov.}\\\\\n")# Experimental dissociation energy $D_0$ (cm$^{-1}$) and zero point energy ZPE (cm$^{-1}$) and bond distance r$_e$ (\AA)~\\cite{Huber1979a}.}\\\\\n")
+        outf.write("\\begin{longtable}{p{40mm}cccccccc}\n")
+        outf.write("\\caption{Name and properties (charge q, multiplicity m) of the  diatomics studied. Covalency is indicated by cov. Equilibrium distance r$_{eq}$~\\cite{Huber1979a}, range of the quantum chemical scan (r$_0$, r$_1$ in {\\AA}) and number of points N in the scan.}\\\\\n")
         outf.write("\\hline\n")
-        #& D$_0$ & ZPE & r$_e$
-        head = ("Compound & Formula & q & m & cov \\\\")
+
+        head = ("Compound & Formula & q & m & cov & r$_0$ & r$_{eq}$ & r$_1$ & N \\\\")
         outf.write("%s\n" % head)
         outf.write("\\hline\n")
         outf.write("\\endfirsthead\n")
@@ -47,7 +78,14 @@ def dtable(diat:dict, md:dict, filenm:str):
         outf.write("\\endlastfoot\n")
         for d in diat.keys():
             radical = diat[d]["mult"] > 1
-            outf.write("%s & %s & %d & %d & %s" % ( d, to_latex(diat[d]["formula"], radical), diat[d]["charge"], diat[d]["mult"], diat[d]["covalent"] ))
+            dd = d.replace("-", " ")
+            r0, r1, N = get_range(diat[d]["formula"])
+            req       = 0
+            for m in md.keys():
+                if (diat[d]["formula"] == m[0] and
+                    md[m]["Te cm^{-1}"] == 0.0):
+                    req = md[m]["Re \AA"]
+            outf.write("%s & %s & %d & %d & %s & %g & %g & %g & %d" % ( dd, to_latex(diat[d]["formula"], radical), diat[d]["charge"], diat[d]["mult"], diat[d]["covalent"], r0, req, r1, N ))
             D0 = None
             we = None
             re = None
@@ -137,7 +175,7 @@ def calc_stats(ref:dict, calc:dict):
 def write_qm_freqs(filenm:str, mydict:dict, diat:dict):
     with open(filenm, "w") as outf:
         outf.write("\\begin{longtable}{p{20mm}cccccc}\n")
-        outf.write("\\caption{First (%s) and second (%s) vibrational frequencies (cm$^{-1}$) from experiment~\\cite{Huber1979a} and quantum chemistry.}\\\\\n" % ( wetex, wexetex ))
+        outf.write("\\caption{Ground state (%s) and first anharmonic (%s) vibrational frequencies (cm$^{-1}$) from experiment~\\cite{Huber1979a} and quantum chemistry.}\\\\\n" % ( wetex, wexetex ))
         outf.write("\\hline\n")
         head = ("Compound & %s & %s & %s & %s & %s & %s \\\\\n" % ( wetex, wexetex, wetex, wexetex,wetex, wexetex ))
         outf.write("&\multicolumn{2}{c}{Experiment}&\multicolumn{2}{c}{CCSD(T)}&\multicolumn{2}{c}{MP2}\\\\\n")
@@ -260,11 +298,11 @@ def parse_args():
 def exptab_header(outf):
     outf.write("\\begin{table}[ht]\n")
     outf.write("\\centering\n")
-    outf.write("\\caption{First and second vibrational frequencies  either from experiment~\cite{Huber1979a} or computed using Psi4~\cite{psi4} based on experimental data.}\n")
+    outf.write("\\caption{First and second vibrational frequencies  either from experiment~\cite{Huber1979a} or computed using Psi4~\cite{psi4} based on experimental data. Root Mean Square Deviation (RMSD) and Mean Signed Error (MSE) are given at the bottom.}\n")
     outf.write("\\label{expfreqs}\n")
     outf.write("\\begin{tabular}{lcccc}\n")
     outf.write("\\hline\n")
-    outf.write("Molecule & \multicolumn{2}{c}{$\omega_e$} & \multicolumn{2}{c}{$\omega_w$x$_e$} \\\\\n")
+    outf.write("Molecule & \multicolumn{2}{c}{$\omega_e$} & \multicolumn{2}{c}{$\omega_e$x$_e$} \\\\\n")
     outf.write("& Exper & Psi4 & Exper & Psi4 \\\\\n")
     outf.write("\\hline\n")
     
@@ -367,9 +405,10 @@ if __name__ == "__main__":
                                 if (ddd[diat]["formula"] == m[0] and
                                     md[m]["Te cm^{-1}"] == 0.0):
                                     explog.write("Experiment: %s %s = %g\n" % ( diat, mdwe, md[m][mdwe] )) 
-                                    explog.write("Experiment: %s %s = %g\n" % ( diat, mdwexe, md[m][mdwexe] )) 
+                                    explog.write("Experiment: %s %s = %g\n" % ( diat, mdwexe, md[m][mdwexe] ))
+                                    ddname = to_latex(ddd[diat]["formula"], ddd[diat]["mult"] > 1)
                                     exptab.write("%s & %.1f & %.1f & %.1f & %.1f\\\\\n" % 
-                                                 ( ddd[diat]["formula"], md[m][mdwe], mydict[method][diat]["we"],
+                                                 ( ddname, md[m][mdwe], mydict[method][diat]["we"],
                                                    md[m][mdwexe], mydict[method][diat]["wexe"] ))
                                     diff = ( mydict[method][diat]["we"] - md[m][mdwe])
                                     expsum["we"]  += diff

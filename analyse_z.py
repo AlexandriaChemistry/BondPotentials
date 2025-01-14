@@ -72,7 +72,7 @@ def calc_aver(mysum:dict)->dict:
 
 def print_exper_table(filenm:str, mysum:dict, df, functions:dict):
     with open(filenm, "w") as outf:
-        caption = "Statistics per function for fits to experimental data for the 14 compounds used by Royappa {\\em et al.}~\\cite{Royappa2006a}.  M is the number of parameters, Z is the average Z-score (cm$^-2$/{\\AA}), $\\Delta$Z indicates the difference between the Z calculated here and that by Royappa, and RMSD (J/mol) is the root mean signed error from experimental data without any energy cut-off. Table is sorted after Z-score."
+        caption = "Statistics per function for fits to experimental data for the 14 compounds used by Royappa {\\em et al.}~\\cite{Royappa2006a}.  M is the number of parameters, Z is the average Z-score (cm$^{-2}$/{\\AA}), $\\Delta$Z indicates the difference between the Z calculated here and that by Royappa, and RMSD (J/mol) is the root mean signed error from experimental data without any energy cut-off. Table is sorted after Z-score."
         write_header(outf, "table", caption, "experiment")
 
         # Number of covalency columns
@@ -131,7 +131,7 @@ def print_theory_table(filenm:str, jsons:list, mysum:dict, df, numax:int, functi
             ecut = ("An energy cut-off of %d cm$^{-1}$ was applied." % numax)
         else:
             ecut = ("No energy cut-off was applied.")
-        caption = ("Statistics per function for quantum chemistry results. M$_f$ is the number of parameters used for fitting, M$_{sim}$ the number of parameters if the minimum is not fixed at zero and when redundancies are removed (see text). N is the number of compounds, Z is the average Z-score (cm$^-2$/{\\AA}), and RMSD (J/mol) is the root mean signed error from quantum chemical results.  %s Table is sorted after Z-score for covalent compounds computed at the CCSD(T) level of theory." % ecut)
+        caption = ("Statistics per function for quantum chemistry results. M$_f$ is the number of parameters used for fitting, M$_{sim}$ the number of parameters if the minimum is not fixed at zero and when redundancies are removed (see text). N is the number of compounds, Z is the average Z-score (cm$^{-2}$/{\\AA}), and RMSD (J/mol) is the root mean signed error from quantum chemical results.  %s Table is sorted after Z-score for covalent compounds computed at the CCSD(T) level of theory." % ecut)
         table = "table*"
         write_header(outf, table, caption, ("theory%d" % numax))
 
@@ -283,7 +283,7 @@ if __name__ == "__main__":
         results = []
 
         os.chdir("json")
-        jsfiles = glob.glob("*-numax=%d.json" % numax)
+        jsfiles = sorted(glob.glob("*-numax=%d.json" % numax))
         os.chdir("..")
         for jjs in range(len(jsfiles)):
             js = jsfiles[jjs]
