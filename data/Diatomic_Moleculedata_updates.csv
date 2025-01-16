@@ -1,10 +1,23 @@
-"Molecule name","Electronic state","Reduced mass","Te cm^{-1}","omega_e cm^{-1}","omega_ex_e cm^{-1}","Be cm^{-1}","alpha_e cm^{-1}","De 10^{-7}cm^{-1}","Re \AA","D0 eV","IP eV",Reference,"Date of reference"
-HCl,"X $^1\Sigma^+$",0.97959272,0,2990.9463,52.8186,10.593416,0.307181,5.3194,1.274552,4.4336,12.758,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-HBr,"X $^1\Sigma^+$",0.99542702,0,2648.975,45.2175,8.464884,0.23328,3.4575,1.414435,3.758,11.67,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-HI,"X $^1\Sigma^+$",0.99988453,0,2309.014,39.6435,6.4263650,0.16886,2.069,1.60916,3.0541,10.38,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-N2+,"X $^2\Sigma^+$",7.00140006,0,2207.00,16.10,1.93176,0.01881,6.10,1.11642,8.7128,27.1,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-OH-,"X $^1\Sigma^+$",7.00140006,0,3700,,,,,0.970,4.755,1.8254,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-NO+,"X $^1\Sigma^+$",7.46643323,0,2376.42,16.262,1.99727,0.01889,5.64,1.06322,10.8506,30.3,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.","JAN 1977"
-SF,"X $^2\Pi_{3/2}$",11.92156863,0,837.6418,4.46953,0.555173,0.00459,0.97534,1.596244,,,"Endo et. al., J Mol. Spec., 97, 213, (1983)","1983"
-Br2,"X ${}^1\Sigma_{g}^{+}$",39.459166,0,325.321,1.0774,0.082107,0.0003187,0.2092,2.28105,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
-LiH,"X $^1\Sigma^+$",0.88123818,0,1405.50936,23.17938,7.51375104,0.21646060,,1.5949107,2.45102,,"W. C. Stwalley, W. T. Zemke, J. Phys. Chem. Ref. Data 22, 87 (1993)","AUG 1992"
+Molecule name,Electronic state,Reduced mass,Te cm^{-1},omega_e cm^{-1},omega_ex_e cm^{-1},Be cm^{-1},alpha_e cm^{-1},De 10^{-7}cm^{-1},Re \AA,D0 eV,IP eV,Reference,Date of reference
+Br2,X ${}^1\Sigma_{g}^{+}$,39.459166,0,325.321,1.0774,0.082107,0.0003187,0.2092,2.28105,1.9797,10.52,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Sep-76
+BrF,X,15.31632653,0,670.75,4.054,0.35584,0.00261,4.01,1.75894,2.54,11.78,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+BrO,X,13.30526316,0,778.7,6.8,0.429598,0.003639,5.23,1.717,,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+CsF,X,16.625,0,352.56,1.615,0.18436969,0.00117562,2.0168,2.345351,5.15,8.8,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+HBr,X $^1\Sigma^+$,0.99542702,0,2648.975,45.2175,8.464884,0.23328,3457.5,1.414435,3.758,11.67,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+HCl,X $^1\Sigma^+$,0.97959272,0,2990.9463,52.8186,10.593416,0.307181,5319.4,1.274552,4.4336,12.758,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+HF,X $^1\Sigma^+$,0.95705545,0,4138.32,89.88,20.9557,0.798,21510,0.916808,5.869,16.039,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+HI,X $^1\Sigma^+$,0.99988453,0,2309.014,39.6435,6.426365,0.16886,2069,1.60916,3.0541,10.38,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+KF,X,12.77495776,0,428,2.4,0.279937413,0.002335038,4.834,2.171457,5.07,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+LiBr,X,6.430232558,0,563.16,3.53,0.555399,0.0056442,21.59,2.170427,4.33,10,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+LiCl,X,5.833333333,0,643.31,4.501,0.70652224,0.00800961,34.087,2.020673,4.84,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+LiF,X,5.115384615,0,910.34,7.929,1.3452576,0.0202868,117.54,1.563864,5.91,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+LiH,X $^1\Sigma^+$,0.88123818,0,1405.50936,23.17938,7.51375104,0.2164606,8617,1.5949107,2.45102,,"W. C. Stwalley, W. T. Zemke, J. Phys. Chem. Ref. Data 22, 87 (1993)",AUG 1992
+LiI,X,6.634328358,0,498.16,3.39,0.443182,0.00409,14.48,2.391924,3.54,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+N2+,X $^2\Sigma^+$,7.00140006,0,2207,16.1,1.93176,0.01881,61,1.11642,8.7128,27.1,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+NaF,X,10.4047619,0,536,3.4,0.43690127,0.00455869,11.61,1.925947,5.33,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+NaH,X,0.958333333,0,1176,21.2,4.89,0.131,3320,1.889,,,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+NO,X $^2\Pi$,7.46643323,0,1904.204,14.075,1.67195,0.0171,54,1.15077,6.4968,9.26436,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",MAR 1977
+NO+,X $^1\Sigma^+$,7.46643323,0,2376.42,16.262,1.99727,0.01889,56.4,1.06322,10.8506,30.3,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+OH-,X $^1\Sigma^+$,7.00140006,0,3700,,,,,0.97,4.755,1.8254,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag, Berlin, Germany, 1979.",JAN 1977
+RbI,X,50.91981132,0,138.51,0.335,0.03283293,0.00010946,0.0738,3.176879,3.3,7.12,"K.P.Huber and G.Herzberg, Molecular Spectra and Molecular Structure. Springer-Verlag,",Nov-77
+SF,X $^2\Pi_{3/2}$,11.92156863,0,837.6418,4.46953,0.555173,0.00459,9.7534,1.596244,,,"Endo et. al., J Mol. Spec., 97, 213, (1983)",1983

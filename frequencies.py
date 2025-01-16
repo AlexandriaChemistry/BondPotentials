@@ -149,7 +149,7 @@ def compute_freq(rvals:list, energies:list, atoms:list, charge:int, mult:int)->d
     molecule = psi4.geometry(mol_tmpl)
     return psi4.diatomic.anharmonicity(rvals, energies, mol=molecule)
 
-def calc_stats(props:dict, ref:dict, calc:dict, percent:bool)->dict:
+def calc_stats(props:dict, ref:dict, calc:dict, percent:bool, method:str)->dict:
     msd  = {}
     for p in props:
         msd[p]  = 0
@@ -161,9 +161,9 @@ def calc_stats(props:dict, ref:dict, calc:dict, percent:bool)->dict:
                         if percent:
                             ratio   = calc[diat][p]/ref[diat][p]
                             msd[p] += (1-ratio)**2
-                            if abs(ratio) > 10:
-                                print("Suspect compound %s property %s ref %g calc %g ratio %g"
-                                      % ( diat, p, ref[diat][p], calc[diat][p], ratio ) )
+                            if abs(ratio) > 8:
+                                print("Suspect compound %s property %s ref %g calc %g ratio %g method %s"
+                                      % ( diat, p, ref[diat][p], calc[diat][p], ratio, method ) )
                         else:
                             msd[p] += (ref[diat][p]-calc[diat][p])**2
 
@@ -205,7 +205,7 @@ def write_qm_freqs(filenm:str, props:dict, mydict:dict, diat:dict):
         outf.write("\\endfoot\n")
         outf.write("\\hline\n")
         outf.write("\\endlastfoot\n")
-        for d in diat.keys():
+        for d in sorted(diat.keys()):
             results = []
             count   = 0
             for m in [ ref, methods[0], methods[1] ]:
@@ -282,7 +282,7 @@ def write_stats(args, mydict:dict, props:dict, methods:list, pots:list):
         mp2   = "MP2"
         mrefs = [ ref ]
         
-        rmsd = calc_stats(props, mydict[ref], mydict[ccsdt], args.percent)
+        rmsd = calc_stats(props, mydict[ref], mydict[ccsdt], args.percent, ccsdt)
         if args.numax >= 0:
             outf.write("%s " % ccsdt)
             write_rmsd(outf, props, rmsd)
@@ -292,7 +292,7 @@ def write_stats(args, mydict:dict, props:dict, methods:list, pots:list):
         if mp2 in mydict:
             outf.write("%s" % mp2)
             for mref in mrefs:
-                rmsd = calc_stats(props, mydict[mref], mydict[mp2], args.percent)
+                rmsd = calc_stats(props, mydict[mref], mydict[mp2], args.percent, mp2)
                 write_rmsd(outf, props, rmsd)
             outf.write("\\\\\n")
         outf.write("\\hline\n")
@@ -300,7 +300,7 @@ def write_stats(args, mydict:dict, props:dict, methods:list, pots:list):
         spots = []
         for p in pots:
             if p in mydict:
-                rmsd = calc_stats(props, mydict[ccsdt], mydict[p], args.percent)
+                rmsd = calc_stats(props, mydict[ccsdt], mydict[p], args.percent, p)
                 spots.append( ( p, rmsd ) )
             else:
                 print("Function %s missing from mydict" % p)
@@ -310,7 +310,7 @@ def write_stats(args, mydict:dict, props:dict, methods:list, pots:list):
                 mrefs = [ ref ]
             outf.write("%s " % m.replace("_", "-"))
             for mref in mrefs:
-                rmsd = calc_stats(props, mydict[mref], mydict[m], args.percent)
+                rmsd = calc_stats(props, mydict[mref], mydict[m], args.percent, m)
                 if m == "Harmonic":
                     for p in props:
                         if p == "we":
