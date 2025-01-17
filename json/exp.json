@@ -2553,6 +2553,9 @@
     },
     "filename": "LiH.xvg"
   },
+  "I2": {
+    "filename": "I2.xvg"
+  },
   "N2": {
     "Buckingham": {
       "RMSD": 801.0236091694513,

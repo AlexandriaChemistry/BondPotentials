@@ -558,6 +558,8 @@ if __name__ == "__main__":
                 if method == ccsdt or args.numax == -1:                          
                     for pot in pots:
                         # Compute them
+                        if not pot in jparms[method][compound]:
+                            continue
                         energies = compute_energies(pot, rvals, jparms[method][compound][pot]['params'])
                         if args.verbose:
                             print("Computed %d energies for %s using %s and %s. First %g" % ( len(energies), diat, method, pot, energies[0] ))
