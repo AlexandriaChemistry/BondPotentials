@@ -7,16 +7,18 @@ from diatomics import get_diatomics,get_moldata
 from potentials import AU2INVCM,Kratzer,Harmonic,Lippincott,Deng_Fan,Pseudo_Gaussian,Rydberg,Varshni,Morse,Valence_State,Rosen_Morse,Rosen_Morse_try,Linnett,Poschl_Teller,Frost_Musulin,Levine,Wei_Hua,Tietz_I,Rafi,Noorizadeh,Tietz_II,Hulburt_Hirschfelder,Murrell_Sorbie,Sun,Lennard_Jones,Buckingham,Wang_Buckingham,Cahill,Xie2005a,Tang2003a
 from curve_fit import read_potential_parms
 
+
 verbose  = False
 exp      = "Experiment"
 ref      = "Reference"
 expsum   = "expsum"
 exp2sum  = "exp2sum"
 ccsdt    = "CCSD(T)"
-methods  = [ ccsdt, "MP2" ]
+mp2      = "MP2"
+methods  = [ ccsdt, mp2 ]
 ev2kJ    = 96.485332
 cm2kJ    = 0.0119627
-    
+
 def to_latex(dd:str, mult:int)->str:
     ndd = ""
     for k in dd:
@@ -278,12 +280,10 @@ def write_stats(args, mydict:dict, props:dict, methods:list, pots:list):
         outf.write("\\\\\n")
         outf.write("\\hline\n")
         
-        ccsdt = "CCSD(T)"
-        mp2   = "MP2"
         mrefs = [ ref ]
         
-        rmsd = calc_stats(props, mydict[ref], mydict[ccsdt], args.percent, ccsdt)
         if args.numax >= 0:
+            rmsd = calc_stats(props, mydict[ref], mydict[ccsdt], args.percent, ccsdt)
             outf.write("%s " % ccsdt)
             write_rmsd(outf, props, rmsd)
             mrefs.append(ccsdt)
@@ -496,13 +496,13 @@ if __name__ == "__main__":
 
     chi2    = "chi2"
     props = { "we":   { "key": "omega_e cm^{-1}", "format": "%.1f", "unit": "1/cm",
-                        "desc": "Ground state frequency $\\omega_e$", "short": "$\\omega_e$" },
+                        "desc": "Vibrational harmonic frequency $\\omega_e$", "short": "$\\omega_e$" },
               "wexe": { "key": "omega_ex_e cm^{-1}", "format": "%.2f", "unit": "1/cm",
-                        "desc": "Anharmonic frequency $\\omega_e$x$_e$", "short": "$\\omega_e$x$_e$" },
+                        "desc": "First anharmonic correction $\\omega_e$x$_e$", "short": "$\\omega_e$x$_e$" },
               "Be":   { "key": "Be cm^{-1}", "format": "%.2f", "unit": "1/cm",
-                        "desc": "Rotational constant in equilibrium position B$_e$", "short": "B$_e$" },
+                        "desc": "Equilibrium rotational constant B$_e$", "short": "B$_e$" },
               "ae":   { "key": "alpha_e cm^{-1}", "format": "%.2e", "unit": "1/cm",
-                        "desc": "Rotational constant - first term $\\alpha_e$", "short": "$\\alpha_e$" },
+                        "desc": "First correction of the rotational constant $\\alpha_e$", "short": "$\\alpha_e$" },
               "De":   { "key": "De 10^{-7}cm^{-1}", "format": "%.2e", "unit": "1/cm",
                         "desc": "Centrifugal distortion constant D$_e$", "short": "D$_e$", "factor": 1e-7 }
              }
