@@ -22,9 +22,6 @@ Output is produced in a csv file, a pdf with plots of the fits (if requested) et
 ## Data
 Data for diatomic molecules were taken from [The Diatomic Molecular Spectroscopy Database](https://dscdm.physics.stonybrook.edu/Datasearch/search.html). Please note though, that some errors were detected and some omissions were found that we have addressed in an additional file in the data directory. The [NIST WebBook](https://webbook.nist.gov) also contains useful information on diatomic molecules.
 
-## Reference
-A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
-
 ## Prerequisites
 For running the scripts a working Python interpreter (version 3.8 or higher) is needed and the following libraries:
 + numpy
@@ -35,5 +32,7 @@ For running the scripts a working Python interpreter (version 3.8 or higher) is 
 + psi4
 
 ## How to cite this material
-[Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997)
+A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
+
+The script and data has a permanent DOI through a [Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997).
  
