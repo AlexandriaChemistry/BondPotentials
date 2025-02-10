@@ -37,7 +37,7 @@ fdata = {
          "Tietz_II": { "ref": "Tietz1971a", "np": 5, "nmolsim": 4, "label": "Tietz II" },
          "Valence_State": { "ref": "Gardner1999a", "np": 4, "nmolsim": 4 },
          "Varshni": { "ref": "Varshni1988a", "np": 3, "nmolsim": 3 },
-         "Wang_Buckingham": { "ref": "Wang2012a", "np": 3, "nmolsim": 3 },
+         "Wang_Buckingham": { "ref": "Wang2013a", "np": 3, "nmolsim": 3 },
          "Wei_Hua": { "ref": "Hua1990a", "np": 4, "nmolsim": 4, "label": "Wei Hua" },
          "Xie2005a": { "ref": "Xie2005a", "np": 4, "nmolsim": 3 }
          }
