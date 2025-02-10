@@ -32,7 +32,7 @@ For running the scripts a working Python interpreter (version 3.8 or higher) is 
 + psi4
 
 ## How to cite this material
-A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication.
+A manuscript about this the code and results from this repository, entitled *Quantitative Evaluation of Anharmonic Bond Potentials for Molecular Simulations*, by Paul J. van Maaren and David van der Spoel has been submitted for publication and is under revision.
 
-The script and data has a permanent DOI through a [Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997).
+The script and data have a permanent DOI through a [Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997).
  
