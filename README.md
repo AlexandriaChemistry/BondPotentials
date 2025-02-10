@@ -34,6 +34,6 @@ For running the scripts a working Python interpreter (version 3.8 or higher) is 
 + matplotlib
 + psi4
 
-+ ## How to cite this material
-+ [Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997)
-+ 
+## How to cite this material
+[Zenodo link](https://dx.doi.org/10.5281/zenodo.14842997)
+ 
